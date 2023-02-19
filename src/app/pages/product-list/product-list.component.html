@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="product-cont">
+<!-- <div class="product-cont">
  <div class="card" style="width: 22rem;" *ngFor="let product of products">
  <a routerLink="/products/{{product.id}}"><img src="{{product.image}}" class="card-img-top" alt="image"></a>
   <div class="card-body">
@@ -11,4 +11,39 @@
    </div>
   </div>
 </div>
-</div>
+</div> -->
+
+
+
+<section class="products">
+
+  <div class="header">
+      <h1>Featured Products</h1>
+      <i class="fa-solid fa-cart-shopping" routerLink="/user/cart" routerLinkActive="router-link-active" ></i>
+  </div>
+  <div class="product-list">
+
+      <div class="product" *ngFor="let product of products;let i=index">
+
+          <div class="product-img">
+              <img [src]="product.image" alt="product">
+          </div>
+
+          <div class="product-details">
+              <h3>{{product.name}}</h3>
+              <h4>{{product.price}} Rs</h4>
+              <p>{{product.category.name}}</p>
+
+              
+              <button class="btn" *ngIf="checkInCart(product)===false" (click)="addToCart(product)">Add To Cart</button>
+              <button class="btn" *ngIf="checkInCart(product)===true" (click)="removeFromCart(product.id)">Remove From Cart</button>
+
+          </div>
+          
+
+      </div>
+
+
+  </div>
+
+</section>
